@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ABC</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    #container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .item {
+      border: 1px solid lightgrey;
+      border-radius: 5px;
+      width: 95px;
+      height: 95px;
+      margin: 4px;
+      font-size: 30px;
+
+      /* flex-box */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .item:link, .item:visited, .item:hover, .item:active {
+      background-color: lightsteelblue;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+  <div id="container"></div>
+  <script>
+    $(document).ready(function() {
+      var container = $('#container');
+
+      for (var i = 0; i < 26; i++) {
+        var big = String.fromCharCode(i + 65);    // A-Z
+        var small = String.fromCharCode(i + 97);  // a-z
+
+        // set button
+        container.append(
+          '<div class="item" onclick="play(' + i + ')">'
+        +   '<h4>'
+        +     big + small
+        +   '</h4>'
+        +   '<audio>'
+        +     '<source src="audio/' + small + '.mp3" /></source>'
+        +   '</audio>'
+        + '</div>'
+        );
+      }
+    });
+
+    function play (index) {
+      $('#container audio').get(index).play();
+    }
+  </script>
+</body>
+</html>
